@@ -7,47 +7,9 @@ environment:
     secure: 8sWBrDudyutFv+4Eq6teJA==
   PYTHON: "C:\\Python38-x64"
   matrix:
-    - compiler: mingw32
-      pcap_lib: npcap
-    - compiler: mingw-w64
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      compiler: vs2017
-      platform: x86
-      config: Debug
-      pcap_lib: npcap
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      compiler: vs2017
-      platform: x64
-      config: Release
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-      compiler: vs2019
-      platform: x86
-      config: Release
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-      compiler: vs2019
-      platform: x64
-      config: Debug
-      use_zstd: true
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      compiler: vs2015
-      platform: x86
-      config: Debug
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      compiler: vs2015
-      platform: x86
-      config: Release
-      use_zstd: true
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      compiler: vs2015
-      platform: x64
-      config: Debug
+      compiler: mingw32
       pcap_lib: npcap
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      compiler: vs2015
-      platform: x64
-      config: Release
-      pcap_lib: npcap
-
 
 init:
 - set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
@@ -65,6 +27,8 @@ before_build:
 - if "%pcap_lib%"=="npcap" (set PCAP_SDK_DIR=C:\Npcap-sdk) else (set PCAP_SDK_DIR=C:\WpdPack)
 - cd C:\projects\PcapPlusPlus
 - if "%compiler%"=="mingw32" configure-windows-mingw.bat mingw32 -m C:\MinGW -w %PCAP_SDK_DIR%
+- if "%compiler%"=="mingw32" g++ -v
+- if "%compiler%"=="mingw32" gcc -v
 - if "%compiler%"=="mingw-w64" configure-windows-mingw.bat mingw-w64 -m C:\mingw-w64\i686-6.3.0-posix-dwarf-rt_v5-rev1 -w %PCAP_SDK_DIR% -s C:\msys64\mingw32
 - if "%use_zstd%"=="true" set ZSTD_HOME_PARAM=-z C:\zstd
 - if "%compiler:~0,4%"=="vs20" configure-windows-visual-studio.bat -v %compiler% -w %PCAP_SDK_DIR% -p C:\pthreads %ZSTD_HOME_PARAM%
