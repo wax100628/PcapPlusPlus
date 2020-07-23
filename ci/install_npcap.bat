@@ -19,7 +19,7 @@ if "%NPCAP_OEM_CREDENTIALS_DEFINED%"=="2" (
 
 echo BEFORE NPCAP INSTALL
 
-%NPCAP_FILE% /S /winpcap_mode
+rem %NPCAP_FILE% /S /winpcap_mode
 
 echo AFTER NPCAP INSTALL
 
