@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 // #include <errno.h>
+#include "NetworkUtils.h"
 #include "Logger.h"
 #include "Packet.h"
 #include "EthLayer.h"
@@ -11,7 +12,6 @@
 #include "UdpLayer.h"
 #include "DnsLayer.h"
 #include "PcapFilter.h"
-#include "NetworkUtils.h"
 #include "EndianPortable.h"
 #ifdef _MSC_VER
 #include "SystemUtils.h"
