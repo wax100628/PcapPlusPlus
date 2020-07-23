@@ -9,7 +9,7 @@ environment:
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       compiler: mingw32
-    - compiler: mingw32
+      pcap_lib: npcap
 
 init:
 - set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
