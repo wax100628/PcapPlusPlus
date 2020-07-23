@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 #include <pthread.h>
-// #include <errno.h>
+#include <errno.h>
 #include "NetworkUtils.h"
 #include "Logger.h"
 #include "Packet.h"
@@ -20,7 +20,7 @@
 #define ETIMEDOUT  10060
 #endif
 
-#define DNS_PORT	    53
+#define DNS_PORT   53
 
 
 namespace pcpp
