@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <pthread.h>
+#include <errno.h>
 #include "Logger.h"
 #include "Packet.h"
 #include "EthLayer.h"
@@ -15,7 +16,6 @@
 #ifdef _MSC_VER
 #include "SystemUtils.h"
 #endif
-#include <errno.h>
 #ifndef ETIMEDOUT
 #define ETIMEDOUT  10060
 #endif
