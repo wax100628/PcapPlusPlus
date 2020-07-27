@@ -6,11 +6,14 @@ environment:
   NPCAP_PASSWORD:
     secure: 8sWBrDudyutFv+4Eq6teJA==
   PYTHON: "C:\\Python38-x64"
+  APPVEYOR_RDP_PASSWORD: SomePassword$1
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       compiler: mingw32
+      pcap_lib: npcap
 
 init:
+- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 - set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
 
 install:
@@ -46,3 +49,6 @@ test_script:
 - cd ..\ExamplesTest
 - ..\..\ci\find_ip.bat
 - "python -m pytest --interface %NetworkIP%"
+
+on_finish:
+- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
