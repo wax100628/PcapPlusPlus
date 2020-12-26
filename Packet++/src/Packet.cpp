@@ -144,6 +144,8 @@ void Packet::destructPacketData()
 
 Packet& Packet::operator=(const Packet& other)
 {
+	if(&other == this)
+		return *this;
 	destructPacketData();
 
 	copyDataFrom(other);
