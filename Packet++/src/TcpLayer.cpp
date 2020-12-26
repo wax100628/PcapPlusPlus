@@ -223,7 +223,7 @@ void TcpLayer::adjustTcpOptionTrailer(size_t totalOptSize)
 	m_NumOfTrailingBytes = newNumberOfTrailingBytes;
 
 	for (int i = 0; i < m_NumOfTrailingBytes; i++)
-		m_Data[sizeof(tcphdr) + totalOptSize + i] = TCPOPT_DUMMY;
+		m_Data[sizeof(tcphdr) + totalOptSize + i] = (uint8_t)PCPP_TCPOPT_NOP;
 
 	getTcpHeader()->dataOffset = (sizeof(tcphdr) + totalOptSize + m_NumOfTrailingBytes)/4;
 }
